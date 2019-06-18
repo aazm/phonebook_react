@@ -1,9 +1,13 @@
 header > div {
     height: 5em;
-    background-color: black;
+    background-color: yellowgreen;
     margin-bottom: 1em;
+    border-bottom: solid 1px black;
+    text-transform: uppercase;
 }
 
 h3 {
     color: whitesmoke;
+    text-shadow: 3px 2px #638c06;
+
 }
