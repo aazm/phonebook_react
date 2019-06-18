@@ -1,6 +1,7 @@
 header > div {
     height: 5em;
     background-color: black;
+    margin-bottom: 1em;
 }
 
 h3 {
