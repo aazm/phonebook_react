@@ -15,7 +15,7 @@ export default class BookTable extends Component {
 
         if(!count) {
             return (
-                <div className="pt-4"><h4>No items found!</h4></div>
+                <div><h4>No items found!</h4></div>
             );
         }
 
@@ -32,7 +32,7 @@ export default class BookTable extends Component {
         });
 
         return (
-            <div className="pt-4">
+            <div>
                 <table className="table">
                     <thead>
                         <tr>
