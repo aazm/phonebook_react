@@ -15,6 +15,7 @@ export default class RecordModal extends Component {
                 show={this.props.opened}
                 aria-labelledby="example-modal-sizes-title-lg"
             >
+
             </Modal>
         )
     }

@@ -19,8 +19,9 @@ export default class BookTable extends Component {
             );
         }
 
-        const rows = records.map(function(record){
-           return (<tr>
+        const rows = records.map(function(record, i){
+
+            return (<tr key={i} >
                <td>{ record.id }</td>
                <td>{ record.subscriber }</td>
                <td>{ record.phone }</td>

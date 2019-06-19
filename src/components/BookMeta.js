@@ -43,7 +43,7 @@ export default class BookMeta extends Component {
 
             </CardBody>
         } else {
-            body = <CardBody className="d-flex justify-content-center align-items-center"><CardText><Spinner color="primary"/></CardText></CardBody>;
+            body = <CardBody className="d-flex justify-content-center align-items-center"><Spinner color="primary" /></CardBody>;
         }
 
         return <Card>{ body }</Card>
