@@ -15,18 +15,18 @@ export default class BookContents extends Component {
             total: 0,
             page: 1,
 
-            is_open: true
+            is_open: false
         };
 
         this.searchClickHandler = this.searchClickHandler.bind(this);
         this.clearClickHandler = this.clearClickHandler.bind(this);
+        this.openEditModal = this.openEditModal.bind(this);
     }
 
     async bookSearchQuery() {
         const { data } = await axios.get(config.api + '/records');
         this.setState({records: data.items, total: data.total});
 
-        console.log(data);
     }
 
     componentDidMount() {
@@ -42,13 +42,14 @@ export default class BookContents extends Component {
     }
 
     openEditModal() {
-        alert('+');
+        this.setState({is_open: true});
     }
 
     render() {
 
         const records = this.state.records;
         const isOpen = this.state.is_open;
+
         return (
             <div>
                 <RecordModal opened={isOpen} />
