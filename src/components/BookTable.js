@@ -6,6 +6,12 @@ export default class BookTable extends Component {
 
     constructor(props) {
         super(props);
+
+        this.onEditClick = this.onEditClick.bind(this);
+    }
+
+    onEditClick(id) {
+        this.props.handleEditRecordEvent(id);
     }
 
     render() {
@@ -19,6 +25,7 @@ export default class BookTable extends Component {
             );
         }
 
+        const that = this;
         const rows = records.map(function(record, i){
 
             return (<tr key={i} >
@@ -26,7 +33,7 @@ export default class BookTable extends Component {
                <td>{ record.subscriber }</td>
                <td>{ record.phone }</td>
                <td>
-                   <button className="btn btn-sm btn-success"><FontAwesomeIcon icon={ faEdit } /></button>
+                   <button className="btn btn-sm btn-success" onClick={ e => that.onEditClick(record.id) }><FontAwesomeIcon icon={ faEdit } /></button>
                    <button className="btn btn-sm btn-danger ml-1"><FontAwesomeIcon icon={ faTrash } /></button>
                </td>
            </tr>);
