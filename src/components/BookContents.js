@@ -84,11 +84,12 @@ export default class BookContents extends Component {
         const records = this.state.records;
         const isOpen = this.state.is_open;
         const {id, subscriber, phone} = this.state;
+
         const record = {id: id, subscriber: subscriber, phone:phone};
 
         return (
             <div>
-                <RecordModal opened={isOpen} onModalClosed={this.catchModalClosedEvent}/>
+                <RecordModal opened={isOpen} {...this.record} onModalClosed={this.catchModalClosedEvent}/>
                 <Row>
                     <Col>
                         <div className="input-group">
