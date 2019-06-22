@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Col, Button } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 import BookTable from "./BookTable";
 import RecordModal from './RecordModal';
 import axios from 'axios';
@@ -15,48 +15,58 @@ export default class BookContents extends Component {
             records: [],
             total: 0,
             page: 1,
-
+            size: 5,
             is_open: false,
+
         };
 
         this.record = {};
 
-        //todo: catchEditRecordEvent = () => { console.log() }
-        this.searchClickHandler = this.searchClickHandler.bind(this);
-        this.clearClickHandler = this.clearClickHandler.bind(this);
-        this.openEditModal = this.openEditModal.bind(this);
-        this.openCreateModal = this.openCreateModal.bind(this);
-        this.catchModalClosedEvent = this.catchModalClosedEvent.bind(this);
-        this.catchEditRecordEvent = this.catchEditRecordEvent.bind(this);
     }
 
     async bookSearchQuery() {
-        const { data } = await axios.get(config.api + '/records');
+
+        let uri = config.api + `/records?page=${this.state.page}&size=${this.state.size}`;
+
+        if(this.state.query.length > 0) {
+            uri = uri + `&name=${this.state.query}`;
+        }
+
+
+        const { data } = await axios.get(uri);
         this.setState({records: data.items, total: data.total});
+    }
+
+    changePageHandler = (inc) => {
+        const page = this.state.page + inc;
+        if(page > 0) {
+            this.setState({page: page}, () => this.bookSearchQuery());
+        }
+
     }
 
     componentDidMount() {
         this.bookSearchQuery();
     }
 
-    searchClickHandler() {
-        alert(this.state.query);
+    searchClickHandler = () => {
+        this.setState({page: 1}, () => this.bookSearchQuery());
     }
 
-    clearClickHandler() {
-        this.setState({query: ''});
+    clearClickHandler = () => {
+        this.setState({query: ''}, () => this.bookSearchQuery());
     }
 
-    openCreateModal() {
+    openCreateModal = () => {
         this.record = {};
         this.openEditModal();
     }
 
-    openEditModal() {
+    openEditModal = () => {
         this.setState({is_open: true});
     }
 
-    catchModalClosedEvent(reload) {
+    catchModalClosedEvent = (reload) => {
         this.setState({is_open: false});
 
         if(reload != undefined) {
@@ -65,7 +75,7 @@ export default class BookContents extends Component {
         }
     }
 
-    catchEditRecordEvent(id) {
+    catchEditRecordEvent = (id) => {
 
         const record = this.state.records.filter(function(record){
             return record.id == id;
@@ -83,9 +93,12 @@ export default class BookContents extends Component {
 
         const records = this.state.records;
         const isOpen = this.state.is_open;
-        const {id, subscriber, phone} = this.state;
 
-        const record = {id: id, subscriber: subscriber, phone:phone};
+        const prevPage = (
+            this.state.page == 1 ?
+                <Col className="col-1"></Col> :
+                <Col className="col-1"><a href="javascript:void(0)" onClick={() => this.changePageHandler(-1)}>Prev</a></Col>
+        )
 
         return (
             <div>
@@ -101,8 +114,8 @@ export default class BookContents extends Component {
                                 onChange={e => this.setState({query: e.target.value})}
                             />
                                 <div className="input-group-append" id="button-addon4">
-                                    <button className="btn btn-outline-success" type="button" onClick={ this.searchClickHandler } >Search</button>
-                                    <button className="btn btn-outline-danger" type="button" onClick={ this.clearClickHandler }>Clear</button>
+                                    <button className="btn btn-outline-success" type="button" onClick={ () => this.searchClickHandler() } >Search</button>
+                                    <button className="btn btn-outline-danger" type="button" onClick={ () => this.clearClickHandler() }>Clear</button>
                                 </div>
                         </div>
                     </Col>
@@ -117,9 +130,9 @@ export default class BookContents extends Component {
                     </Col>
                 </Row>
                 <Row className="mb-5 justify-content-center">
-                    <Col className="col-1"><a href="google.com">Prev</a></Col>
+                    { prevPage }
                     <Col className="col-1">{ this.state.page }</Col>
-                    <Col className="col-1"><a href="google.com">Next</a></Col>
+                    <Col className="col-1"><a href="javascript:void(0)" onClick={() => this.changePageHandler(1)}>Next</a></Col>
                 </Row>
             </div>
         )

@@ -23,14 +23,7 @@ export default class RecordModal extends Component {
     }
 
     componentWillReceiveProps(props) {
-
-        console.log('++');
-        console.log(props);
-        console.log('++');
-
         this.setState({...this.getDefaultState(), ...props});
-
-        console.log(this.state);
     }
 
     persistRecord = () => {
