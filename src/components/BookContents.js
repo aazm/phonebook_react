@@ -17,7 +17,6 @@ export default class BookContents extends Component {
             page: 1,
 
             is_open: false,
-            id_editing: null,
         };
 
         this.record = {};
@@ -63,9 +62,6 @@ export default class BookContents extends Component {
         if(reload != undefined) {
             this.record = {};
             this.bookSearchQuery();
-
-            this.setState({id_editing: null});
-
         }
     }
 
@@ -77,7 +73,6 @@ export default class BookContents extends Component {
 
         if(record != undefined) {
 
-            this.setState({id_editing: id});
             this.record = record;
             this.openEditModal();
         }
@@ -88,6 +83,8 @@ export default class BookContents extends Component {
 
         const records = this.state.records;
         const isOpen = this.state.is_open;
+        const {id, subscriber, phone} = this.state;
+        const record = {id: id, subscriber: subscriber, phone:phone};
 
         return (
             <div>
