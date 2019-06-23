@@ -16,7 +16,7 @@ export default class BookContents extends Component {
             total: 0,
             page: 1,
             size: 5,
-            is_open: false,
+            isOpen: false,
 
         };
 
@@ -63,11 +63,11 @@ export default class BookContents extends Component {
     }
 
     openEditModal = () => {
-        this.setState({is_open: true});
+        this.setState({isOpen: true});
     }
 
     catchModalClosedEvent = (reload) => {
-        this.setState({is_open: false});
+        this.setState({isOpen: false});
 
         if(reload != undefined) {
             this.record = {};
@@ -92,7 +92,7 @@ export default class BookContents extends Component {
     render() {
 
         const records = this.state.records;
-        const isOpen = this.state.is_open;
+        const isOpen = this.state.isOpen;
 
         const prevPage = (
             this.state.page == 1 ?
