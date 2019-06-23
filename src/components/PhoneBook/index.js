@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Container, Row, Col } from 'reactstrap';
-import BookContents from './BookContents';
-import BookMeta from './BookMeta'
+import BookContents from './components/BookContents/index';
+import BookMeta from './components/BookMeta/index'
 
 export default class PhoneBook extends Component {
     render() {

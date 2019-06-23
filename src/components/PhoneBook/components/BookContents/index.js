@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'reactstrap';
-import BookTable from "./BookTable";
-import RecordModal from './RecordModal';
+import BookTable from "./components/BookTable/index";
+import RecordModal from './components/RecordModal/index';
 import axios from 'axios';
-import config from '../config'
+import config from '../../../../config'
 
 export default class BookContents extends Component {
 

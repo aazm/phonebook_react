@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Modal, ModalHeader, ModalBody, ModalFooter,  Button, Input, Row, Col, Container } from 'reactstrap';
 import axios from 'axios';
-import config from './../config';
+import config from '../../../../../../config';
 
 export default class RecordModal extends Component {
 

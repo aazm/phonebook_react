@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import {Card, CardText, CardBody, CardTitle, CardSubtitle, Spinner} from 'reactstrap';
-import config from '../config'
+import {Card, CardBody, CardTitle, Spinner} from 'reactstrap';
+import config from '../../../../config'
 import axios from 'axios';
-import './BookMeta.css';
+import './index.css';
 import Moment from 'react-moment';
 
 export default class BookMeta extends Component {
@@ -43,7 +43,7 @@ export default class BookMeta extends Component {
 
             </CardBody>
         } else {
-            body = <CardBody className="d-flex justify-content-center align-items-center"><Spinner color="primary" /></CardBody>;
+            body = <CardBody className="d-flex justify-content-center align-items-center"><Spinner color="primary" />p</CardBody>;
         }
 
         return <Card>{ body }</Card>
